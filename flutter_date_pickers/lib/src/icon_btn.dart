@@ -9,6 +9,8 @@ class IconBtn extends StatelessWidget {
   /// Typically [Icon] widget.
   final Widget icon;
 
+  final Color backgroundColor;
+
   /// Function called when user tap on the button.
   ///
   /// Can be null. In this case button will be disabled.
@@ -22,33 +24,47 @@ class IconBtn extends StatelessWidget {
 
   /// Creates button with [icon] different
   /// depends on [MaterialApp] or [CupertinoApp] ancestor.
-  const IconBtn({
-    Key? key,
-    required this.icon,
-    this.onTap,
-    this.tooltip
-  }) : super(key: key);
+  const IconBtn(
+      {Key? key,
+      required this.icon,
+      required this.backgroundColor,
+      this.onTap,
+      this.tooltip})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    bool isMaterial =  Material.of(context) != null;
+    bool isMaterial = Material.of(context) != null;
+    // return _cupertinoBtn();
 
-    return isMaterial
-      ? _materialBtn()
-      : _cupertinoBtn();
+    return isMaterial ? _materialBtn() : _cupertinoBtn();
   }
 
-  Widget _cupertinoBtn() =>
-      CupertinoButton(
+  Widget _cupertinoBtn() {
+    return Container(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        shape: BoxShape.circle,
+      ),
+      child: CupertinoButton(
         padding: const EdgeInsets.all(0.0),
         child: icon,
         onPressed: onTap,
-      );
-
-  Widget _materialBtn() =>
-     IconButton(
-       icon: icon,
-       tooltip: tooltip ?? "",
-       onPressed: onTap,
+      ),
     );
+  }
+
+  Widget _materialBtn() {
+    return Container(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        shape: BoxShape.circle,
+      ),
+      child: IconButton(
+        icon: icon,
+        tooltip: tooltip ?? "",
+        onPressed: onTap,
+      ),
+    );
+  }
 }

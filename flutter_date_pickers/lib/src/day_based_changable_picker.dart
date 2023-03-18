@@ -225,22 +225,25 @@ class _DayBasedChangeablePickerState<T>
           DayBasedChangeablePickerState state = snapshot.data!;
 
           return MonthNavigationRow(
-            previousPageIconKey: widget.datePickerKeys?.previousPageIconKey,
-            nextPageIconKey: widget.datePickerKeys?.nextPageIconKey,
-            previousMonthTooltip: state.prevTooltip,
-            nextMonthTooltip: state.nextTooltip,
-            onPreviousMonthTapped:
-                state.isFirstMonth ? null : _presenter.gotoPrevMonth,
-            onNextMonthTapped:
-                state.isLastMonth ? null : _presenter.gotoNextMonth,
-            title: Text(
-              state.curMonthDis,
-              key: widget.datePickerKeys?.selectedPeriodKeys,
-              style: _resultStyles.displayedPeriodTitle,
-            ),
-            nextIcon: widget.datePickerStyles.nextIcon,
-            prevIcon: widget.datePickerStyles.prevIcon,
-          );
+              previousPageIconKey: widget.datePickerKeys?.previousPageIconKey,
+              nextPageIconKey: widget.datePickerKeys?.nextPageIconKey,
+              previousMonthTooltip: state.prevTooltip,
+              nextMonthTooltip: state.nextTooltip,
+              onPreviousMonthTapped:
+                  state.isFirstMonth ? null : _presenter.gotoPrevMonth,
+              onNextMonthTapped:
+                  state.isLastMonth ? null : _presenter.gotoNextMonth,
+              title: Text(
+                state.curMonthDis,
+                key: widget.datePickerKeys?.selectedPeriodKeys,
+                style: _resultStyles.displayedPeriodTitle,
+              ),
+              nextIcon: widget.datePickerStyles.nextIcon,
+              prevIcon: widget.datePickerStyles.prevIcon,
+              nextIconBackgroundColor:
+                  widget.datePickerStyles.nextIconBackgroundColor,
+              prevIconBackgroundColor:
+                  widget.datePickerStyles.prevIconBackgroundColor);
         });
   }
 

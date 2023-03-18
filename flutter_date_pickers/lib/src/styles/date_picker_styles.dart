@@ -62,6 +62,12 @@ class DatePickerStyles {
   /// User goes to next data period by click on it.
   final Widget nextIcon;
 
+  /// background color for nextIcon.
+  final Color nextIconBackgroundColor;
+
+  /// background color for prevIcon.
+  final Color prevIconBackgroundColor;
+
   /// Index of the first day of week, where 0 points to Sunday, and 6 points to
   /// Saturday. Must not be less 0 or more then 6.
   ///
@@ -69,20 +75,22 @@ class DatePickerStyles {
   final int? firstDayOfeWeekIndex;
 
   /// Styles for date picker.
-  DatePickerStyles(
-      {this.displayedPeriodTitle,
-      this.currentDateStyle,
-      this.disabledDateStyle,
-      this.selectedDateStyle,
-      this.selectedSingleDateDecoration,
-      this.defaultDateTextStyle,
-      this.dayHeaderStyle,
-      this.dayHeaderStyleBuilder,
-      this.dayHeaderTitleBuilder,
-      this.firstDayOfeWeekIndex,
-      this.prevIcon = const Icon(Icons.chevron_left),
-      this.nextIcon = const Icon(Icons.chevron_right)})
-      : assert(!(dayHeaderStyle != null && dayHeaderStyleBuilder != null),
+  DatePickerStyles({
+    this.displayedPeriodTitle,
+    this.currentDateStyle,
+    this.disabledDateStyle,
+    this.selectedDateStyle,
+    this.selectedSingleDateDecoration,
+    this.defaultDateTextStyle,
+    this.dayHeaderStyle,
+    this.dayHeaderStyleBuilder,
+    this.dayHeaderTitleBuilder,
+    this.firstDayOfeWeekIndex,
+    this.prevIcon = const Icon(Icons.chevron_left),
+    this.nextIcon = const Icon(Icons.chevron_right),
+    this.nextIconBackgroundColor = Colors.black12,
+    this.prevIconBackgroundColor = Colors.black12,
+  })  : assert(!(dayHeaderStyle != null && dayHeaderStyleBuilder != null),
             "Should be only one from: dayHeaderStyleBuilder, dayHeaderStyle."),
         assert(
             dayHeaderStyleBuilder == null ||

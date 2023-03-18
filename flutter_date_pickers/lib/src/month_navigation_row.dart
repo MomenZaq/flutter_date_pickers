@@ -38,8 +38,14 @@ class MonthNavigationRow extends StatelessWidget {
   /// Widget to use at the end of this row (after title).
   final Widget nextIcon;
 
+  /// background color for nextIcon.
+  final Color nextIconBackgroundColor;
+
   /// Widget to use at the beginning of this row (before title).
   final Widget prevIcon;
+
+  /// background color for prevIcon.
+  final Color prevIconBackgroundColor;
 
   /// Usually [Text] widget.
   final Widget? title;
@@ -55,7 +61,9 @@ class MonthNavigationRow extends StatelessWidget {
     this.previousMonthTooltip,
     this.title,
     required this.nextIcon,
-    required this.prevIcon
+    required this.nextIconBackgroundColor,
+    required this.prevIcon,
+    required this.prevIconBackgroundColor,
   }) : super(key: key);
 
   @override
@@ -70,6 +78,7 @@ class MonthNavigationRow extends StatelessWidget {
           child: IconBtn(
             key: previousPageIconKey,
             icon: prevIcon,
+            backgroundColor: prevIconBackgroundColor,
             tooltip: previousMonthTooltip,
             onTap: onPreviousMonthTapped,
           ),
@@ -89,6 +98,7 @@ class MonthNavigationRow extends StatelessWidget {
           child: IconBtn(
             key: nextPageIconKey,
             icon: nextIcon,
+            backgroundColor: nextIconBackgroundColor,
             tooltip: nextMonthTooltip,
             onTap: onNextMonthTapped,
           ),
