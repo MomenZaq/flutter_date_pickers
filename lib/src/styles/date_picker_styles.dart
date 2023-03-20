@@ -307,6 +307,8 @@ class DatePickerRangeStyles extends DatePickerStyles {
     DayHeaderTitleBuilder? dayHeaderTitleBuilder,
     Widget nextIcon = const Icon(Icons.chevron_right),
     Widget prevIcon = const Icon(Icons.chevron_left),
+    Color nextIconBackgroundColor = Colors.black12,
+    Color prevIconBackgroundColor = Colors.black12,
     int? firstDayOfWeekIndex,
     this.selectedPeriodLastDecoration,
     this.selectedPeriodMiddleDecoration,
@@ -326,6 +328,8 @@ class DatePickerRangeStyles extends DatePickerStyles {
             dayHeaderTitleBuilder: dayHeaderTitleBuilder,
             nextIcon: nextIcon,
             prevIcon: prevIcon,
+            nextIconBackgroundColor: nextIconBackgroundColor,
+            prevIconBackgroundColor: prevIconBackgroundColor,
             firstDayOfeWeekIndex: firstDayOfWeekIndex);
 
   @override
