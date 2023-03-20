@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_date_pickers/flutter_date_pickers.dart' as dp;
-import 'package:flutter_date_pickers/flutter_date_pickers.dart';
 
 import '../color_picker_dialog.dart';
 import '../color_selector_btn.dart';
@@ -50,7 +49,7 @@ class _DayPickerPageState extends State<DayPickerPage> {
         color: selectedSingleDateDecorationColor,
         shape: BoxShape.circle,
       ),
-      dayHeaderStyle: DayHeaderStyle(
+      dayHeaderStyle: dp.DayHeaderStyle(
         textStyle: TextStyle(
           color: Colors.red,
         ),
