@@ -87,6 +87,7 @@ class DayBasedPicker<T> extends StatelessWidget with CommonDatePickerFunctions {
         children: <Widget>[
           Flexible(
             child: GridView.custom(
+              padding: EdgeInsets.only(top: 12),
               physics: datePickerLayoutSettings.scrollPhysics,
               gridDelegate: datePickerLayoutSettings.dayPickerGridDelegate,
               childrenDelegate:
@@ -162,7 +163,7 @@ class DayBasedPicker<T> extends StatelessWidget with CommonDatePickerFunctions {
       List<Widget> days = List.generate(firstDayOffset, (index) => index)
           .reversed
           .map((i) => daysInPrevMonth - i)
-          .map((day) => _buildCell(prevYear, prevMonth, day))
+          .map((day) => _buildCell(prevYear, prevMonth, day, false))
           .toList();
 
       result = days;
@@ -181,7 +182,7 @@ class DayBasedPicker<T> extends StatelessWidget with CommonDatePickerFunctions {
     final int daysInMonth = DatePickerUtils.getDaysInMonth(year, month);
 
     for (int i = 1; i <= daysInMonth; i += 1) {
-      Widget dayWidget = _buildCell(year, month, i);
+      Widget dayWidget = _buildCell(year, month, i, true);
       result.add(dayWidget);
     }
 
@@ -208,13 +209,13 @@ class DayBasedPicker<T> extends StatelessWidget with CommonDatePickerFunctions {
 
     int nextMonth = month + 1;
     result = List.generate(emptyCellsNum, (i) => i + 1)
-        .map((day) => _buildCell(year, nextMonth, day))
+        .map((day) => _buildCell(year, nextMonth, day, false))
         .toList();
 
     return result;
   }
 
-  Widget _buildCell(int year, int month, int day) {
+  Widget _buildCell(int year, int month, int day, bool currentMonth) {
     DateTime dayToBuild = DateTime(year, month, day);
     dayToBuild = _checkDateTime(dayToBuild);
 
@@ -228,6 +229,8 @@ class DayBasedPicker<T> extends StatelessWidget with CommonDatePickerFunctions {
       contentMargin: datePickerLayoutSettings.cellContentMargin,
       eventDecorationBuilder: eventDecorationBuilder,
       localizations: localizations,
+      currentMonth: currentMonth,
+      datePickerLayoutSettings: datePickerLayoutSettings,
     );
 
     if (dayType != DayType.disabled) {
@@ -279,6 +282,9 @@ class _DayCell extends StatelessWidget {
 
   final MaterialLocalizations localizations;
 
+  final bool currentMonth;
+  final DatePickerLayoutSettings datePickerLayoutSettings;
+
   const _DayCell({
     Key? key,
     required this.day,
@@ -288,6 +294,8 @@ class _DayCell extends StatelessWidget {
     required this.currentDate,
     required this.localizations,
     this.eventDecorationBuilder,
+    required this.currentMonth,
+    required this.datePickerLayoutSettings,
   }) : super(key: key);
 
   @override
@@ -304,6 +312,9 @@ class _DayCell extends StatelessWidget {
       itemStyle = datePickerStyles.disabledDateStyle;
     } else if (DatePickerUtils.sameDate(currentDate, day)) {
       itemStyle = datePickerStyles.currentDateStyle;
+    } else if (!currentMonth) {
+      itemStyle = datePickerStyles.defaultDateTextStyle
+          ?.copyWith(color: datePickerLayoutSettings.prevMonthEndColor);
     } else {
       itemStyle = datePickerStyles.defaultDateTextStyle;
     }

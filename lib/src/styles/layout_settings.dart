@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
@@ -14,7 +15,7 @@ const double _kDayPickerRowHeight = 42.0;
 const int _kMaxDayPickerRowCount = 6; // A 31 day month that starts on Saturday.
 const double _kMonthPickerPortraitWidth = 330.0;
 const EdgeInsetsGeometry _kContentPadding =
-  EdgeInsets.symmetric(horizontal: 8.0);
+    EdgeInsets.symmetric(horizontal: 8.0);
 const EdgeInsetsGeometry _kCellContentMargin = EdgeInsets.all(0);
 
 /// Settings for the layout of the [DayPicker], [WeekPicker], [RangePicker]
@@ -62,6 +63,11 @@ class DatePickerLayoutSettings {
   /// false by default.
   final bool showPrevMonthEnd;
 
+  /// color of showPrevMonthEnd
+  ///
+  final Color prevMonthEndColor;
+
+
   /// Hide Month navigation row
   /// false by default.
   final bool hideMonthNavigationRow;
@@ -93,6 +99,7 @@ class DatePickerLayoutSettings {
     this.cellContentMargin = _kCellContentMargin,
     this.showNextMonthStart = false,
     this.showPrevMonthEnd = false,
+    this.prevMonthEndColor = Colors.white12,
     this.hideMonthNavigationRow = false,
     this.scrollPhysics,
   });
@@ -102,8 +109,8 @@ class _DayPickerGridDelegate extends SliverGridDelegate {
   final double _dayPickerRowHeight;
   final int _maxDayPickerRowCount;
 
-  const _DayPickerGridDelegate(this._dayPickerRowHeight,
-      this._maxDayPickerRowCount);
+  const _DayPickerGridDelegate(
+      this._dayPickerRowHeight, this._maxDayPickerRowCount);
 
   @override
   SliverGridLayout getLayout(SliverConstraints constraints) {
